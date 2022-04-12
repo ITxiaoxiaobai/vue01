@@ -1,5 +1,5 @@
 <template>
-  <div class="setting-list-item">
+  <div class="setting-list-item" @click="showItemTitle(item.title)">
     <div class="setting-list-item-left">
       <img :src="require('../../assets/icon/'+item.icon)" class="item-icon">
       <span class="item-title">{{ item.title }}</span>
@@ -18,6 +18,22 @@ export default {
       type: Object,
       required: true,
     }
+  },
+  methods: {
+    showItemTitle(title) {
+      this.$commonDialog.alert({title:"测试标题"}).then(()=>{
+
+      }).catch(err=>{
+        console.log(err)
+      });
+      // this.$dialog.confirm({
+      //   message: title
+      // }).then(res => {
+      //   console.log(res)
+      // }).catch(err => {
+      //   console.log('取消',err)
+      // })
+    }
   }
 }
 </script>
@@ -30,24 +46,28 @@ export default {
   height: 55px;
   padding-left: 2%;
   background-color: #ffffff;
-  &::after{
+
+  &::after {
     position: absolute;
     display: block;
     content: '';
-    width:98%;
+    width: 98%;
     height: 1px;
-    left:2%;
-    bottom:0;
+    left: 2%;
+    bottom: 0;
     background-color: #EEEEEE;
     transform: scaleY(.7);
   }
-  &:last-child::after{
+
+  &:last-child::after {
     display: none;
   }
-  .setting-list-item-left{
+
+  .setting-list-item-left {
     display: flex;
     height: 55px;
     align-items: center;
+
     .item-icon {
       width: 25px;
       height: 25px;
@@ -60,7 +80,8 @@ export default {
       font-weight: bold;
     }
   }
-  .setting-list-item-right{
+
+  .setting-list-item-right {
     display: flex;
     align-items: center;
     padding-right: 7px;
